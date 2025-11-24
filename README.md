@@ -33,8 +33,9 @@
 
 ## 如何使用
 
-游戏内输入 `t [翻译信息]` 即可使用,发送信息时，信息将提交至模型进行翻译后再次发出。
-<img width="651" height="219" alt="屏幕截图 2025-11-24 185838" src="https://github.com/user-attachments/assets/55e57abb-eeff-4ff3-9071-4aeeebee9b98" />
+游戏内输入 `t [翻译信息]` 即可使用。按此格式发送聊天信息时，将提交至模型进行翻译后再次发出。
+
+<img width="643" height="125" alt="image" src="https://github.com/user-attachments/assets/da3c74f2-e252-46b2-a826-114a121a9565" />
 
 ## 灵感
 
