@@ -3,7 +3,12 @@
     "version": "1.0.0",
     "name": "llm_translator",
     "description": "在游戏内使用大语言模型进行对不同语种玩家间的对话翻译",
-    "author": "HeTao_yz",
+    "author": [
+        {
+			"name": "HeTao_yz",
+			"link": "https://github.com/HeTao-yz"
+		}
+    ],
     "link": "https://github.com/HeTao-yz/llm-translator",
     "dependencies": {
         "mcdreforged": ">=2.0.0"
@@ -12,3 +17,4 @@
         "LICENSE"
     ]
 }
+
