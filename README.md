@@ -32,7 +32,7 @@
     "secondary_language": "en_us",
     "base_url": "https://api.deepseek.com",
     "model": "deepseek-chat",
-    "api_key": "sk-6afc433605e146b98a2a80822bbfc388",
+    "api_key": "enter-your-api-key",
     "is_proxy_to_other_servers": false,
     "proxy_servers": [
         {
