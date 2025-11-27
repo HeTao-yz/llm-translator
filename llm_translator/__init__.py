@@ -1,56 +1,63 @@
-import os
-from typing import Optional
 from mcdreforged.api.all import *
-from openai import OpenAI
+from .proxy_other_server import *
+from .sign_and_book import *
+from .config import Config
+from .llm import *
 
-class Config(Serializable):
-    first_language: str = 'zh_cn'
-    secondary_language: str = 'en_us'
-    base_url: str = "https://api.deepseek.com"
-    model: str = 'deepseek-chat'
-    api_key: str = '请在此处填写API'
+config = None
 
-config: Optional[Config] = None
 
-def on_load(server: PluginServerInterface,prev_module):
+def on_load(server: PluginServerInterface, prev_module):
     global config
     config = server.load_config_simple(target_class=Config)
-    prefix = 't [translate-message]'
-    help_message = f'前缀t与空格,后接信息以使用大语言模型进行{config.first_language}和{config.secondary_language}互译。'
+    send_config()
+    prefix = "t [translate-message] and !!tr <x> <y> <z> [xyz is sign or book location]"
+    help_message = f"使用大模型进行{config.first_language}和{config.secondary_language}互译。玩家对话，游戏内木牌和放在讲台上的书均可翻译"
     server.register_help_message(prefix, help_message)
 
-class LLM:
-    @staticmethod
-    def get_client():
-        client = OpenAI(
-            api_key=config.api_key,
-            base_url=config.base_url
-        )
-        return client
+    builder = SimpleCommandBuilder()
+    builder.command("!!tr <x> <y> <z>", send_nbt)
 
-    @staticmethod
-    def use(message):
-        response = LLM.get_client().chat.completions.create(
-            model=config.model,
-            messages=[
-                {"role": "system", "content": f"请将以下句子进行{config.first_language}和{config.secondary_language}互译，翻译需要准确达意正确，不产生歧义。同时请注意在Minecraft这款游戏中的特有名词翻译正确，只返回翻译结果，不需要任何解释"},
-                {"role": "user", "content": message},
-            ],
-            stream=False
-        )
-        return response.choices[0].message.content
+    builder.arg("x", Integer)
+    builder.arg("y", Integer)
+    builder.arg("z", Integer)
 
-def translator_message(message):
-    try:
-        return LLM.use(message)
-    except Exception as e:
-        return f'ERROR: {str(e)}'
+    builder.register(server)
+
+
+def send_config():
+    from . import llm
+
+    llm.config = config
+    from . import proxy_other_server
+
+    proxy_other_server.config = config
+    from . import sign_and_book
+
+    sign_and_book.config = config
+
+
+def send_nbt(source: InfoCommandSource, dic: dict):
+    server = source.get_server()
+    server.execute(f"data get block {dic['x']} {dic['y']} {dic['z']}")
+
 
 def on_user_info(server: ServerInterface, info: Info):
-    if info.content.startswith('t '):
-        server.say(f'§7[T]<{info.player}> '+f'§f{translator_message(info.content[2:])}')
+    if info.content.startswith("t "):
+        translator_messages = LLM.use(info.content[2:])
+        server.say(f"§7[T]<{info.player}> " + f"§f{translator_messages}")
+        if config.is_proxy_to_other_servers:
+            proxy_message(info.player, translator_messages)
 
 
-
-
- 
+def on_info(server: PluginServerInterface, info: Info):
+    if "has the following block data:" in info.content and len(info.content) > 80:
+        if not info.is_player:
+            nbt = info.content
+            get_messages_and_translate(nbt)
+    if (
+        "The target block is not a block entity" in info.content
+        and len(info.content) < 40
+    ):
+        if not info.is_player:
+            server.say("§7Unsupported block. Please choose a sign or book.")
