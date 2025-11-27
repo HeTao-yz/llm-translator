@@ -1,5 +1,7 @@
 # LLM-Translator
 
+[English](https://github.com/HeTao-yz/llm-translator/blob/main/README_en.md)
+
 > 本插件的开发灵感来源于 MCDR插件 [SimpleTranslator - 插件仓库 - MCDReforged](https://mcdreforged.com/zh-CN/plugin/simple_translator)
 
 使用大语言模型进行提供游戏内玩家对话翻译，木牌文字翻译，书籍翻译。
