@@ -11,7 +11,10 @@ def get_messages_and_translate(nbt: str):
     nbt_part = nbt[nbt.find("{") :]
     nbt_part = remove_all_newlines(nbt_part)
     decode_nbt = parse_nbt(nbt_part)
-    if decode_nbt["id"] == "minecraft:sign":
+    if (
+        decode_nbt["id"] == "minecraft:sign"
+        or decode_nbt["id"] == "minecraft:hanging_sign"
+    ):
         server.say("§7[sign: front || back ] Translating...")
         front_sign_message = ""
         back_sign_message = ""
