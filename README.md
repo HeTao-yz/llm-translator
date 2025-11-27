@@ -88,7 +88,8 @@
 
 使用指令 `!!tr <x> <y> <z>` 即可翻译，其中 <x> <y> <z> 参数为木牌或讲台上书籍坐标
 
-![7 TTM2BNYUX}RO2_6I}9 VK](https://github.com/user-attachments/assets/1c854813-f90a-4b78-9a71-88ff465822fa)
+<img width="1754" height="978" alt="image" src="https://github.com/user-attachments/assets/927ded2c-4a81-4ec5-9912-1f06d806bc6e" />
+
 
 <img width="484" height="443" alt="image" src="https://github.com/user-attachments/assets/71e7b327-8e3c-4be4-98d2-d0e5a208bebd" />
 <img width="1683" height="1375" alt="image" src="https://github.com/user-attachments/assets/419d5613-b0f6-4cd4-880e-2e3f3e065b30" />
