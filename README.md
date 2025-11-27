@@ -91,7 +91,8 @@
 ![7 TTM2BNYUX}RO2_6I}9 VK](https://github.com/user-attachments/assets/1c854813-f90a-4b78-9a71-88ff465822fa)
 
 <img width="484" height="443" alt="image" src="https://github.com/user-attachments/assets/71e7b327-8e3c-4be4-98d2-d0e5a208bebd" />
-<img width="1002" height="332" alt="image" src="https://github.com/user-attachments/assets/2824604c-f1ac-4a26-8ede-9c7eff0f2099" />
+<img width="1683" height="1375" alt="image" src="https://github.com/user-attachments/assets/419d5613-b0f6-4cd4-880e-2e3f3e065b30" />
+
 
 ## 其他
 
