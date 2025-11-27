@@ -1,6 +1,6 @@
 # LLM-Translator
 
-[English](https://github.com/HeTao-yz/llm-translator/blob/main/README_en.md)
+[English](https://github.com/HeTao-yz/llm-translator/blob/main/README_EN.md)
 
 > 本插件的开发灵感来源于 MCDR插件 [SimpleTranslator - 插件仓库 - MCDReforged](https://mcdreforged.com/zh-CN/plugin/simple_translator)
 
