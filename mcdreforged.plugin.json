@@ -7,11 +7,12 @@
     "link": "https://github.com/HeTao-yz/llm-translator",
     "dependencies": {
         "mcdreforged": ">=2.0.0",
-        "minecraft_data_api": "*"
+        "minecraft_data_api": ">=1.4.0"
     },
     "resources": [
         "LICENSE"
     ]
 }
+
 
 
