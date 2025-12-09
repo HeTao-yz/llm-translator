@@ -4,6 +4,7 @@ from .sign_and_book import *
 from .config import Config
 from .llm import *
 
+
 config = None
 
 
@@ -11,16 +12,18 @@ def on_load(server: PluginServerInterface, prev_module):
     global config
     config = server.load_config_simple(target_class=Config)
     send_config()
-    prefix = "t [translate-message] and !!tr <x> <y> <z> [xyz is sign or book location]"
+    prefix_1 = "t [translate-message]"
+    prefix_2 = "!!tr <x> <y> <z> [xyz is sign or book location]"
     help_message = f"使用大模型进行{config.first_language}和{config.secondary_language}互译。玩家对话，游戏内木牌和放在讲台上的书均可翻译"
-    server.register_help_message(prefix, help_message)
+    server.register_help_message(prefix_1, help_message)
+    server.register_help_message(prefix_2, help_message)
 
     builder = SimpleCommandBuilder()
     builder.command("!!tr <x> <y> <z>", send_nbt)
 
-    builder.arg("x", Integer)
-    builder.arg("y", Integer)
-    builder.arg("z", Integer)
+    builder.arg("x", QuotableText)
+    builder.arg("y", QuotableText)
+    builder.arg("z", QuotableText)
 
     builder.register(server)
 
@@ -37,9 +40,28 @@ def send_config():
     sign_and_book.config = config
 
 
+@new_thread
 def send_nbt(source: InfoCommandSource, dic: dict):
+    import minecraft_data_api as api
+
     server = source.get_server()
-    server.execute(f"data get block {dic['x']} {dic['y']} {dic['z']}")
+    re_dim_convert = {
+        0: "minecraft:overworld",
+        -1: "minecraft:the_nether",
+        1: "minecraft:the_end",
+    }
+    player = source.get_info().player
+    dim = api.get_player_dimension(player)
+    coordinate = api.get_player_coordinate(player)
+
+    for key in "xyz":
+        if dic[key] == "~":
+            cord = getattr(coordinate, key)
+            dic[key] = int(cord) if cord >= 0 else int(cord-1)
+
+    server.execute(
+        f"execute in {re_dim_convert[dim]} run data get block {dic['x']} {dic['y']} {dic['z']}"
+    )
 
 
 def on_user_info(server: ServerInterface, info: Info):
@@ -55,9 +77,3 @@ def on_info(server: PluginServerInterface, info: Info):
         if not info.is_player:
             nbt = info.content
             get_messages_and_translate(nbt)
-    if (
-        "The target block is not a block entity" in info.content
-        and len(info.content) < 40
-    ):
-        if not info.is_player:
-            server.say("§7Unsupported block. Please choose a sign or book.")
