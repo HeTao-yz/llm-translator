@@ -58,7 +58,7 @@ Supports translating the following in-game:
 | Field Name   | Data Type | Default Value | Description                                            |
 | ------------ | --------- | ------------- | ------------------------------------------------------ |
 | **address**  | string    | `"127.0.0.1"` | The address of the target server.                      |
-| **port**     | number    | *No default*  | The RCON port of the target server.                    |
+| **port**     | int    | *No default*  | The RCON port of the target server.                    |
 | **password** | string    | `""`          | The RCON password for the target server (if required). |
 
 ### Configuration Notes
@@ -90,3 +90,4 @@ Use the command `!!tr <x> <y> <z>` to translate (the parameters <x> <y> <z>
 ## Other
 
 This is my first time developing a plugin, so there might be imperfections or areas for improvement. If you encounter bugs or have suggestions while using it, please feel free to submit an Issue on the plugin's Github repository.
+
