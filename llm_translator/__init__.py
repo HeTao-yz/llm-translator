@@ -57,7 +57,7 @@ def send_nbt(source: InfoCommandSource, dic: dict):
     for key in "xyz":
         if dic[key] == "~":
             cord = getattr(coordinate, key)
-            dic[key] = int(cord) if cord >= 0 else int(cord-1)
+            dic[key] = int(cord) if cord >= 0 else int(cord - 1)
 
     server.execute(
         f"execute in {re_dim_convert[dim]} run data get block {dic['x']} {dic['y']} {dic['z']}"

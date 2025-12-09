@@ -15,18 +15,16 @@
 支持翻译游戏内：
 
 - 玩家对话信息
-  
+
 - 木牌文字
-  
+
 - 讲台上的书籍信息
-  
 
 ## 配置
 
 1. 插件第一次加载成功后，将在 `/config/llm-translator/` 文件夹下生成配置文件
-  
+
 2. 配置文件默认使用 `deepseek-chat` 模型进行中英翻译，若符合此需求，仅需在api_key处填写你的api密钥即可使用。否则请参考下方配置文件进行修改。
-  
 
 ```json
 {
@@ -51,23 +49,23 @@
 }
 ```
 
-| 字段名 | 数据类型 | 默认值 | 说明  |
-| --- | --- | --- | --- |
-| **first_language** | string | `"zh_cn"` | 主要语言，通常设置为用户的母语或主要使用语言 |
-| **secondary_language** | string | `"en_us"` | 次要语言，需要翻译成的目标语言 |
-| **base_url** | string | `"https://api.deepseek.com"` | 基础请求地址 |
-| **model** | string | `"deepseek-chat"` | 语言模型名称 |
-| **api_key** | string | *无默认值* | API 访问密钥 |
-| **is_proxy_to_other_servers** | boolean | `false` | 是否转发聊天翻译信息至其他服务器 |
-| **proxy_servers** | list[dict] | `[]` | 转发服务器配置列表。需要启用rcon |
+| 字段名                           | 数据类型       | 默认值                          | 说明                     |
+| ----------------------------- | ---------- | ---------------------------- | ---------------------- |
+| **first_language**            | string     | `"zh_cn"`                    | 主要语言，通常设置为用户的母语或主要使用语言 |
+| **secondary_language**        | string     | `"en_us"`                    | 次要语言，需要翻译成的目标语言        |
+| **base_url**                  | string     | `"https://api.deepseek.com"` | 基础请求地址                 |
+| **model**                     | string     | `"deepseek-chat"`            | 语言模型名称                 |
+| **api_key**                   | string     | *无默认值*                       | API 访问密钥               |
+| **is_proxy_to_other_servers** | boolean    | `false`                      | 是否转发聊天翻译信息至其他服务器       |
+| **proxy_servers**             | list[dict] | `[]`                         | 转发服务器配置列表。需要启用rcon     |
 
 **proxy_servers** 的rcon服务器配置：
 
-| 字段名 | 数据类型 | 默认值 | 说明  |
-| --- | --- | --- | --- |
-| **address** | string | `"127.0.0.1"` | 转发服务器地址 |
-| **port** | number | *无默认值* | 转发服务器端口号 |
-| **password** | string | `""` | 转发服务器认证密码（如需要） |
+| 字段名          | 数据类型   | 默认值           | 说明             |
+| ------------ | ------ | ------------- | -------------- |
+| **address**  | string | `"127.0.0.1"` | 转发服务器地址        |
+| **port**     | int    | *无默认值*        | 转发服务器端口号       |
+| **password** | string | `""`          | 转发服务器认证密码（如需要） |
 
 ### 配置说明
 
@@ -88,14 +86,12 @@
 
 *书籍信息：书需要放在讲台上才能翻译*
 
-使用指令 `!!tr <x> <y> <z>` 即可翻译，其中 <x> <y> <z> 参数为木牌或讲台上书籍坐标
+使用指令 `!!tr <x> <y> <z>` 即可翻译（ <x> <y> <z> 参数为木牌或讲台上书籍坐标，参数可使用 ~ 来代指当前玩家坐标）
 
 <img width="1754" height="978" alt="image" src="https://github.com/user-attachments/assets/927ded2c-4a81-4ec5-9912-1f06d806bc6e" />
 
-
 <img width="484" height="443" alt="image" src="https://github.com/user-attachments/assets/71e7b327-8e3c-4be4-98d2-d0e5a208bebd" />
 <img width="1683" height="1375" alt="image" src="https://github.com/user-attachments/assets/419d5613-b0f6-4cd4-880e-2e3f3e065b30" />
-
 
 ## 其他
 

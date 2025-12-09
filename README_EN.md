@@ -83,7 +83,7 @@ In the game chat, prefix your message with **`t` and a space** to translate i
 
 *Book Content: The book must be placed on a Lectern to be translated.*
 
-Use the command `!!tr <x> <y> <z>` to translate, where `<x> <y> <z>` are the coordinates of the Sign or the Lectern containing the book.
+Use the command `!!tr <x> <y> <z>` to translate (the parameters <x> <y> <z> are the coordinates of the sign or the book on a lectern; you can use ~ to represent the current player's coordinates).
 
 <img width="1754" height="978" alt="image" src="https://github.com/user-attachments/assets/927ded2c-4a81-4ec5-9912-1f06d806bc6e" /><img width="484" height="443" alt="image" src="https://github.com/user-attachments/assets/71e7b327-8e3c-4be4-98d2-d0e5a208bebd" /> <img width="1683" height="1375" alt="image" src="https://github.com/user-attachments/assets/419d5613-b0f6-4cd4-880e-2e3f3e065b30" />
 
