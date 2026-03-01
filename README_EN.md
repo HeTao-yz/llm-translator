@@ -27,6 +27,8 @@ Supports translating the following in-game:
    "base_url": "https://api.deepseek.com",
    "model": "deepseek-chat",
    "api_key": "enter-your-api-key",
+   "enable_system_prompt": true,
+   "system_prompt": "将以下句子{first_language}和{secondary_language}互译，翻译准确达意。注意Minecraft这款游戏中特有名词翻译正确，只返回翻译结果，不需要任何解释",
    "is_proxy_to_other_servers": false,
    "proxy_servers": [
        {
@@ -50,6 +52,8 @@ Supports translating the following in-game:
 | **base_url**                  | string     | `"https://api.deepseek.com"` | The base request URL for the API.                                   |
 | **model**                     | string     | `"deepseek-chat"`            | The name of the language model to use.                              |
 | **api_key**                   | string     | *No default*                 | The API access key.                                                 |
+| **enable_system_prompt**      | boolean    | `true`                       | Whether to enable system prompt.                                    |
+| **system_prompt**             | string     | `"将以下句子{first_language}和{secondary_language}互译，翻译准确达意。注意Minecraft这款游戏中特有名词翻译正确，只返回翻译结果，不需要任何解释"` | Custom system prompt, supports {first_language} and {secondary_language} placeholders |
 | **is_proxy_to_other_servers** | boolean    | `false`                      | Whether to forward translated chat messages to other servers.       |
 | **proxy_servers**             | list[dict] | `[]`                         | List of target server configurations for forwarding. Requires RCON. |
 
@@ -69,7 +73,9 @@ Supports translating the following in-game:
 
 3. **Multiple Model Support**: Change `base_url` and `model` to switch to other LLM providers.
 
-4. **Chat Message Forwarding**: To forward translated player messages to other servers (typically used in setups like Velocity with multiple backend servers and pre-configured chat forwarding), set `is_proxy_to_other_servers` to `true` and configure the `proxy_servers` list.
+4. **System Prompt Customization**: Use `enable_system_prompt` to control whether to use system prompts, and `system_prompt` to customize translation prompts, supporting `{first_language}` and `{secondary_language}` placeholders.
+
+5. **Chat Message Forwarding**: To forward translated player messages to other servers (typically used in setups like Velocity with multiple backend servers and pre-configured chat forwarding), set `is_proxy_to_other_servers` to `true` and configure the `proxy_servers` list.
 
 ## Usage
 

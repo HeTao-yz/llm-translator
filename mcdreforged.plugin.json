@@ -1,6 +1,6 @@
 {
     "id": "llm_translator",
-    "version": "1.4.0",
+    "version": "1.5.0",
     "name": "LLM_Translator",
     "description": "在游戏内使用大语言模型进行翻译。支持翻译玩家对话，游戏内木牌文字，讲台上的书籍内容。",
     "author": "HeTao_yz",

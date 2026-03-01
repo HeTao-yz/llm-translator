@@ -33,6 +33,8 @@
     "base_url": "https://api.deepseek.com",
     "model": "deepseek-chat",
     "api_key": "enter-your-api-key",
+    "enable_system_prompt": true,
+    "system_prompt": "将以下句子{first_language}和{secondary_language}互译，翻译准确达意。注意Minecraft这款游戏中特有名词翻译正确，只返回翻译结果，不需要任何解释",
     "is_proxy_to_other_servers": false,
     "proxy_servers": [
         {
@@ -56,6 +58,8 @@
 | **base_url**                  | string     | `"https://api.deepseek.com"` | 基础请求地址                 |
 | **model**                     | string     | `"deepseek-chat"`            | 语言模型名称                 |
 | **api_key**                   | string     | *无默认值*                       | API 访问密钥               |
+| **enable_system_prompt**      | boolean    | `true`                       | 是否启用系统提示词             |
+| **system_prompt**             | string     | `"将以下句子{first_language}和{secondary_language}互译，翻译准确达意。注意Minecraft这款游戏中特有名词翻译正确，只返回翻译结果，不需要任何解释"` | 自定义系统提示词，支持{first_language}和{secondary_language}占位符 |
 | **is_proxy_to_other_servers** | boolean    | `false`                      | 是否转发聊天翻译信息至其他服务器       |
 | **proxy_servers**             | list[dict] | `[]`                         | 转发服务器配置列表。需要启用rcon     |
 
@@ -72,7 +76,8 @@
 1. **基础需求**：只需填写 `api_key` 即可使用默认的 DeepSeek 模型进行玩家对话中英翻译
 2. **其他语言支持**：通过修改 `first_language` 和 `secondary_language` 可支持其他语言对的翻译
 3. **多模型支持**：更换 `base_url` 和 `model` 可切换到其他 LLM 服务商
-4. **聊天翻译信息转发功能**：玩家信息转发至其他服务器（通常适用于Velocity等代理端多子服且已经配置了聊天信息转发的服务器），请设置 `is_proxy_to_other_servers` 为 `true` 并配置 `proxy_servers` 列表
+4. **系统提示词自定义**：通过 `enable_system_prompt` 可控制是否使用系统提示词，`system_prompt` 可自定义翻译提示词，支持 `{first_language}` 和 `{secondary_language}` 占位符
+5. **聊天翻译信息转发功能**：玩家信息转发至其他服务器（通常适用于Velocity等代理端多子服且已经配置了聊天信息转发的服务器），请设置 `is_proxy_to_other_servers` 为 `true` 并配置 `proxy_servers` 列表
 
 ## 使用说明
 

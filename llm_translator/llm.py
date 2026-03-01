@@ -13,17 +13,27 @@ class LLM:
     @staticmethod
     def use(message):
         try:
-            response = LLM.get_client().chat.completions.create(
-                model=config.model,
-                messages=[
-                    {
-                        "role": "system",
-                        "content": f"将以下句子{config.first_language}和{config.secondary_language}互译，翻译准确达意。注意Minecraft这款游戏中特有名词翻译正确，只返回翻译结果，不需要任何解释",
-                    },
-                    {"role": "user", "content": message},
-                ],
-                stream=False,
-            )
+            if config.enable_system_prompt:
+                system_content = config.system_prompt.format(
+                    first_language=config.first_language,
+                    secondary_language=config.secondary_language
+                )
+                response = LLM.get_client().chat.completions.create(
+                    model=config.model,
+                    messages=[
+                        {"role": "system","content": system_content},
+                        {"role": "user", "content": message},
+                    ],
+                    stream=False,
+                )
+            else:
+                response = LLM.get_client().chat.completions.create(
+                    model=config.model,
+                    messages=[
+                        {"role": "user", "content": message}
+                    ],
+                    stream=False,
+                )
             return response.choices[0].message.content
         except Exception as e:
             return e
